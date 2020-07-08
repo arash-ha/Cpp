@@ -35,7 +35,7 @@ public:
         if(nums.size() == 0) return -1;
         if(nums.size() == 1) return 0;
         int sum = 0;
-        int result = 0;
+        int result = -1;
         for (auto num : nums) sum += num;
         int sumleft = 0;
         int sumright = sum - nums[0];
