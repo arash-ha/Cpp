@@ -17,11 +17,9 @@ Output: [[1,4],[2,5],[3,6]]
 class Solution {
 public:
     vector<vector<int>> transpose(vector<vector<int>>& A) {
-        int C = A.size();
-        int R = A[0].size();
-        vector<vector<int>> result(R,vector<int>(C,0));
-        for(int i = 0; i < R; i++){
-            for(int j = 0; j < C; j++){
+        vector<vector<int>> result(A[0].size(),vector<int>(A.size(),0));
+        for(int i = 0; i < A[0].size(); i++){
+            for(int j = 0; j < A.size(); j++){
                 result[i][j] = A[j][i];
             }
         }
