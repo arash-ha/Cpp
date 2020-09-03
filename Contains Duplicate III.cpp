@@ -21,13 +21,14 @@ Output: false
 class Solution {
 public:
     bool containsNearbyAlmostDuplicate(vector<int>& nums, int k, int t) {
-        if(nums.size() < 2 || k <= 0) return false;
-        set<long> set;
-        for(int i = 0; i < nums.size(); i++){
-            if(i > k) set.erase(nums[i-k-1]);
-            auto p = set.lower_bound(long(nums[i]) - long(t));
-            if(p != set.end() && *p - nums[i] <= t) return true;
-            set.insert(nums[i]);
+        int n = nums.size();
+        set<int> set(nums.begin(), nums.end());
+        if(t ==0 && n == set.size()) return false;
+        for(int i = 0; i < n; i++){
+            for(int j = i + 1; j < i+1+k; j++){
+                if(j >= n) break;
+                if(abs((long long)nums[i] - nums[j]) <= t) return true;
+            }
         }
         return false;
     }
