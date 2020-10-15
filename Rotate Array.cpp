@@ -35,6 +35,18 @@ k >= 0
 class Solution {
 public:
     void rotate(vector<int>& nums, int k) {
+        int n = nums.size();
+        k = k % n;
+        reverse(nums.begin(), nums.begin()+n-k);
+        reverse(nums.begin()+n-k, nums.end());
+        reverse(nums.begin(), nums.end());
+    }
+};
+
+// Solution 2
+class Solution {
+public:
+    void rotate(vector<int>& nums, int k) {
         k = k % (nums.size());
         vector<int> v(nums.end() - k, nums.end());
         nums.erase(nums.end() - k, nums.end());
@@ -42,7 +54,7 @@ public:
     }
 };
 
-// Solution 2
+// Solution 3
 class Solution {
 public:
     void rotate(vector<int>& nums, int k) {
