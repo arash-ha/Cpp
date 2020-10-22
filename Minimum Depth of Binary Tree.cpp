@@ -33,9 +33,8 @@ class Solution {
 public:
     int minDepth(TreeNode* root) {
         if(!root) return 0;
-        int c{0};
         vector<int> v;
-        helper(root, c, v);
+        helper(root, 0, v);
         int min = v[0];
         for(int i = 0; i < v.size(); i++){
             if(v[i] < min) min = v[i];
