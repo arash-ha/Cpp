@@ -17,26 +17,24 @@ Return the linked list sorted as well.
 class Solution {
 public:
     ListNode* deleteDuplicates(ListNode* head) {
-        if(head == NULL) return head;
-        
-        ListNode dummyHead(-1);
-        dummyHead.next = head;
-        ListNode* ptr1 = &dummyHead;
-        ListNode* ptr2 = dummyHead.next;
-        
-        while(ptr2 != NULL && ptr2->next != NULL){
-            if(ptr1->next->val == ptr2->next->val){
-                while(ptr2->next != NULL && ptr1->next->val == ptr2->next->val){
-                    ptr2 = ptr2->next;
-                }
-                ptr1->next = ptr2->next;
-                ptr2 = ptr2->next;
+        if(!head)
+            return head;
+        ListNode dummy(-1);
+        dummy.next = head;
+        ListNode* p1 = &dummy;
+        ListNode* p2 = dummy.next;
+        while(p2 && p2->next){
+            if(p1->next->val == p2->next->val){
+                while(p2->next && p1->next->val == p2->next->val)
+                    p2 = p2->next;
+                p1->next = p2->next;
+                p2 = p2->next;
             }
             else{
-                ptr1 = ptr1->next;
-                ptr2 = ptr2->next;
+                p1 = p1->next;
+                p2 = p2->next;
             }
         }
-        return dummyHead.next;
+        return dummy.next;
     }
 };
