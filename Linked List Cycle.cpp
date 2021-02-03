@@ -41,7 +41,7 @@ public:
         if (!head) return head;
         ListNode *fast = head -> next;
         ListNode *slow = head;
-        while (fast != NULL && fast -> next != NULL && slow != NULL){
+        while (fast && fast -> next && slow){
             if (fast == slow) return true;
             fast = fast -> next -> next;
             slow = slow -> next;
