@@ -12,6 +12,7 @@ Input: s = "rat", t = "car"
 Output: false
 */
 
+// Solution 1
 class Solution {
 public:
     bool isAnagram(string s, string t) {
@@ -24,5 +25,15 @@ public:
                 return false;
         }
         return true;
+    }
+};
+
+// Solution 2
+class Solution {
+public:
+    bool isAnagram(string s, string t) {
+        sort(s.begin(), s.end());
+        sort(t.begin(), t.end());
+        return s == t;
     }
 };
