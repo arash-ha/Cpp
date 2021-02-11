@@ -15,11 +15,13 @@ Output: false
 class Solution {
 public:
     bool isAnagram(string s, string t) {
-        if(s.length() != t.length()) return false;
+        if(s.length() != t.length())
+            return false;
         unordered_map<char, int> ump;
-        for(int i = 0; i < s.size(); i++) ump[s[i]]++;
+        for(auto ch : s) ump[ch]++;
         for(int i = 0; i < s.size(); i++){
-            if(--ump[t[i]] < 0) return false;
+            if(--ump[t[i]] < 0)
+                return false;
         }
         return true;
     }
