@@ -41,18 +41,19 @@ One possible answer is: [0,-3,9,-10,null,5], which represents the following heig
 class Solution {
 public:
     TreeNode* sortedListToBST(ListNode* head) {
-        if(!head) return nullptr;
-                
-        ListNode *fast = head, **slow = &head;
-        while(fast -> next && fast -> next -> next){
-            slow = &((*slow) -> next);
-            fast = fast -> next -> next;
+        if(!head)
+            return nullptr;
+        if(!head->next)
+            return new TreeNode(head->val);
+        ListNode *fast = head->next->next, *slow = head;
+        while(fast && fast->next){
+            slow = slow->next;
+            fast = fast->next->next;
         }
-        TreeNode* root = new TreeNode((*slow) -> val);
-        root -> right = sortedListToBST((*slow) -> next);
-        *slow  = nullptr;
-        root -> left = sortedListToBST(head);
+        TreeNode* root = new TreeNode(slow->next->val);
+        root->right = sortedListToBST(slow->next->next);
+        slow->next = nullptr;
+        root->left = sortedListToBST(head);
         return root;
-        
     }
 };
