@@ -30,19 +30,21 @@ One possible answer is: [0,-3,9,-10,null,5], which represents the following heig
  */
 class Solution {
 public:
-    TreeNode* sortedArrayToBST(vector<int>& nums) {    
-        return BST(nums, 0, nums.size() - 1);
-    }
-
-    TreeNode* BST(vector<int> &nums, int left, int right){
-        int size = right - left;
-        if (size < 0) return NULL;
-        if(size == 0) return new TreeNode(nums[left]);
-        int mid = (left + right)/2;
-        TreeNode* current = new TreeNode(nums[mid]);
-        current -> left = BST(nums, left, mid - 1);
-        current -> right = BST(nums, mid + 1, right);
-        return current;
+    using iter = vector<int>::const_iterator;
+    TreeNode* sortedArrayToBST(vector<int>& nums) {
+        if (nums.empty())
+            return nullptr;
+        return BST(nums.begin(), nums.end());
     }
     
+    TreeNode* BST(iter l, iter r){
+        if (l < r){
+            iter m = l + (r - l) / 2;
+            TreeNode* root = new TreeNode(*m);
+            root->left = BST(l, m);
+            root->right = BST(m + 1, r);
+            return root;
+        }
+        return nullptr;
+    }
 };
