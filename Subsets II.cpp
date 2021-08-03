@@ -36,3 +36,23 @@ public:
         }
     }
 };
+
+// Solution 2
+class Solution {
+public:
+    vector<vector<int>> subsetsWithDup(vector<int>& nums) {
+        vector<vector<int>> res = {{}};
+        sort(nums.begin(), nums.end());
+        vector<int> temp;
+        for(int n : nums){
+            int size = res.size();
+            for(int i = 0; i < size; i++){
+                temp = res[i];
+                temp.emplace_back(n);
+                if(find(res.begin(), res.end(), temp) == res.end())
+                    res.emplace_back(temp);
+            }
+        }
+        return res;
+    }
+};
