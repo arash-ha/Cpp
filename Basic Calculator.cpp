@@ -21,7 +21,7 @@ Output: 23
  
 Constraints:
 
-1 <= s.length <= 3 * 105
+1 <= s.length <= 3 * 10^5
 s consists of digits, '+', '-', '(', ')', and ' '.
 s represents a valid expression.
 '+' is not used as a unary operation.
