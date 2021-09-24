@@ -24,6 +24,7 @@ Constraints:
 The answer is guaranteed to fit within a 32-bit integer, ie. answer <= 2^31 - 1.
 */
 
+// Solution I
 class Solution {
 public:
     int tribonacci(int n) {
@@ -40,5 +41,18 @@ public:
             i++;
         }
         return d;
+    }
+};
+
+// Solution II
+class Solution {
+public:
+    int tribonacci(int n) {
+        if(n == 0)
+            return 0;
+        if(n == 1 || n == 2)
+            return 1;
+        int sum = tribonacci(n - 1) + tribonacci(n - 2) + tribonacci(n - 3);
+        return sum;
     }
 };
