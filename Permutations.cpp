@@ -19,7 +19,6 @@ class Solution {
 public:
     vector<vector<int>> permute(vector<int>& nums) {
         vector<vector<int>> result;
-        set<vector<int>> myset;
         helper(nums, 0, nums.size() - 1, result);
 
         return result;
