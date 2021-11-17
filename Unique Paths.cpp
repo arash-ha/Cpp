@@ -35,9 +35,11 @@ Output: 6
 Constraints:
 
 1 <= m, n <= 100
-It's guaranteed that the answer will be less than or equal to 2 * 109.
+It's guaranteed that the answer will be less than or equal to 2 * 10^9.
 */
 
+
+// Solution I
 class Solution {
 public:
     int uniquePaths(int m, int n) {
@@ -54,5 +56,24 @@ public:
             }
         }
         return paths[0][0];
+    }
+};
+
+// Solution II
+class Solution {
+public:
+    int uniquePaths(int m, int n) {
+        vector<vector<int>> paths(m, vector<int>(n));
+        for(int r = 0; r < m; r++)
+            paths[r][0] = 1;
+        
+        for(int c = 0; c < n; c++)
+            paths[0][c] = 1;
+            
+        for(int r = 1; r < m; r++)
+            for(int c = 1; c < n; c++)
+                paths[r][c] = paths[r][c - 1] + paths[r - 1][c];
+
+        return paths[m - 1][n - 1];
     }
 };
