@@ -22,6 +22,8 @@ Constraints:
 1 <= num < 2^31
 */
 
+
+// Solution I
 class Solution {
 public:
     int findComplement(int num) {
@@ -29,5 +31,18 @@ public:
         while(num & mask)
             mask <<= 1;
         return ~num ^ mask;
+    }
+};
+
+// Solution II
+class Solution {
+public:
+    int findComplement(int num) {
+        int i = 31;
+        while((num & 1 << i) == 0)
+            i--;
+        while(i >= 0)
+            num ^= 1 << i--;
+        return num;
     }
 };
