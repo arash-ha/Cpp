@@ -26,6 +26,7 @@ Output: 5
 Explanation: 10 is "1010" in binary, with complement "0101" in binary, which is 5 in base-10.
 */
 
+// Solution I
 class Solution {
 public:
     int bitwiseComplement(int N) {
@@ -35,5 +36,19 @@ public:
             mask = mask + 1;
         }
         return (mask ^ N);
+    }
+};
+
+// Solution II
+
+class Solution {
+public:
+    int bitwiseComplement(int n) {
+        if(!n)
+            return 1;
+        unsigned mask = ~0;
+        while(mask & n)
+            mask = mask << 1;
+        return ~n ^ mask;   
     }
 };
