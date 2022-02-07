@@ -19,6 +19,8 @@ Explanation:
 'e' is the letter that was added.
 */
 
+// Solution 1
+
 class Solution {
 public:
     char findTheDifference(string s, string t) {
@@ -29,5 +31,18 @@ public:
             if(ump[ch] < 0) return ch;
         }
         return -1;
+    }
+};
+
+// Solution II
+
+class Solution {
+public:
+    char findTheDifference(string s, string t) {
+        char res = 0;
+        int i = 0;
+        while(i < t.length())
+            res ^= s[i] ^ t[i++];
+        return res ^ t[i];
     }
 };
