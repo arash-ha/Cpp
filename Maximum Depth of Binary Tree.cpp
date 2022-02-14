@@ -29,10 +29,38 @@ return its depth = 3.
  *     TreeNode(int x, TreeNode *left, TreeNode *right) : val(x), left(left), right(right) {}
  * };
  */
+
+// Solution I
 class Solution {
 public:
     int maxDepth(TreeNode* root) {
      if(!root) return 0;
      else return (1 + max(maxDepth(root -> left), maxDepth(root -> right))) ;  
+    }
+};
+
+// Solution II
+class Solution {
+public:
+    int maxDepth(TreeNode* root) {
+        if(!root)
+            return 0;
+        queue<TreeNode*> q;
+        int res = 0;
+        TreeNode* cur;
+        q.push(root);
+        while(!q.empty()){
+            res++;
+            int size = q.size();
+            while(size--){
+                cur = q.front();
+                if(cur->left)
+                    q.push(cur->left);
+                if(cur->right)
+                    q.push(cur->right);
+                q.pop();
+            }
+        }
+        return res;
     }
 };
