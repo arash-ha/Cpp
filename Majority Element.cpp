@@ -14,6 +14,7 @@ Input: [2,2,1,1,1,2,2]
 Output: 2
 */
 
+// Solution I
 class Solution {
 public:
     int majorityElement(vector<int>& nums) {
@@ -29,5 +30,17 @@ public:
             prev = nums[i];
         }
         return prev;
+    }
+};
+
+// Solution II
+class Solution {
+public:
+    int majorityElement(vector<int>& nums) {
+        unordered_map<int, int> ump;
+        for(int n : nums)
+            if(++ump[n] > nums.size() / 2)
+                return n;
+        return 0;
     }
 };
