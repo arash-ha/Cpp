@@ -33,7 +33,7 @@ Follow up:
 It is very easy to come up with a solution with a runtime of O(n log n). Can you do it in linear time O(n) and possibly in a single pass?
 Can you do it without using any built-in function (i.e., like __builtin_popcount in C++)?
 */
-
+//Solution I
 class Solution {
 public:
     vector<int> countBits(int n) {
@@ -47,6 +47,19 @@ public:
             }
             res.emplace_back(sum);
         }
+        return res;
+    }
+};
+
+//Solution II
+
+class Solution {
+public:
+    vector<int> countBits(int n) {
+        vector<int> res(n+1);
+        res[0] = 0;
+        for(int i = 1; i <= n; i++)
+            res[i] = res[i/2] + i % 2;
         return res;
     }
 };
