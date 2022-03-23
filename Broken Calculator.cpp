@@ -38,7 +38,7 @@ Note:
 1 <= X <= 10^9
 1 <= Y <= 10^9
 */
-
+// Solution I
 class Solution {
 public:
     int brokenCalc(int X, int Y) {
@@ -50,5 +50,20 @@ public:
             return 1 + brokenCalc(X, Y + 1);
         else
             return 1 + brokenCalc(X, Y / 2);
+    }
+};
+
+// Solution II
+
+class Solution {
+public:
+    int brokenCalc(int startValue, int target) {
+        int res = 0;
+        while(startValue < target){
+            target = target % 2 > 0 ? target + 1 : target / 2;
+            res++;
+        }
+        return res + startValue - target;
+        
     }
 };
