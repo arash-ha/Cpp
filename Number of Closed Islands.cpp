@@ -59,4 +59,46 @@ public:
     }
 };
 
-
+// Solution II
+class Solution {
+public:
+    int closedIsland(vector<vector<int>>& grid) {
+        int res = 0;
+        for(int i = 0; i < grid.size(); i++)
+            for(int j = 0; j < grid[0].size(); j++)
+                if(grid[i][j] == 0)
+                    if(bfs(grid, i, j))
+                        res++;
+        return res;
+    }
+    bool bfs(vector<vector<int>>& grid, int i, int j){
+        grid[i][j] = -1;
+        queue<pair<int, int>> q;
+        q.push(make_pair(i, j));
+        bool flag = true;
+        while(!q.empty()){
+            int x = q.front().first;
+            int y = q.front().second;
+            q.pop();
+            if(x == 0 || x >= grid.size() - 1 || y == 0 || y >= grid[0].size() - 1)
+                flag = false;
+            if(x - 1 >= 0 && grid[x - 1][y] == 0){
+                grid[x - 1][y] = -1;
+                q.push(make_pair(x - 1, y));
+            }
+            if(x + 1 < grid.size() && grid[x + 1][y] == 0){
+                grid[x + 1][y] = -1;
+                q.push(make_pair(x + 1, y));
+            }
+            if(y - 1 >= 0 && grid[x][y - 1] == 0){
+                grid[x][y - 1] = -1;
+                q.push(make_pair(x, y - 1));
+            }
+            if(y + 1 < grid[0].size() && grid[x][y + 1] == 0){
+                grid[x][y + 1] = -1;
+                q.push(make_pair(x, y + 1));
+            }
+        }
+        return flag;
+    }
+};
