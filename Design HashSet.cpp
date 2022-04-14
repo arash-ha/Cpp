@@ -27,7 +27,7 @@ The number of operations will be in the range of [1, 10000].
 Please do not use the built-in HashSet library.
 */
 
-
+// Solution I
 class MyHashSet {
 public:
     /** Initialize your data structure here. */
@@ -50,3 +50,31 @@ public:
     std::bitset<1000001> bs;
 };
 
+// Solution II
+class MyHashSet {
+public:
+    unordered_map<int, int> ump;
+    MyHashSet() {
+        
+    }
+    
+    void add(int key) {
+        ump[key]++;
+    }
+    
+    void remove(int key) {
+        ump.erase(key);
+    }
+    
+    bool contains(int key) {
+        return (ump.find(key) != ump.end()) ? true : false;
+    }
+};
+
+/**
+ * Your MyHashSet object will be instantiated and called as such:
+ * MyHashSet* obj = new MyHashSet();
+ * obj->add(key);
+ * obj->remove(key);
+ * bool param_3 = obj->contains(key);
+ */
