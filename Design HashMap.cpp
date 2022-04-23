@@ -28,6 +28,7 @@ The number of operations will be in the range of [1, 10000].
 Please do not use the built-in HashMap library.
 */
 
+// Solution I
 class MyHashMap {
 public:
     /** Initialize your data structure here. */
@@ -64,6 +65,37 @@ public:
     void remove(int key) {
         auto & list = vec[key % size];
         list.remove_if([key](auto num){return num.first == key;});
+    }
+};
+
+/**
+ * Your MyHashMap object will be instantiated and called as such:
+ * MyHashMap* obj = new MyHashMap();
+ * obj->put(key,value);
+ * int param_2 = obj->get(key);
+ * obj->remove(key);
+ */
+ 
+ 
+// Solution II
+ 
+class MyHashMap {
+public:
+    int arr[1000001];
+    MyHashMap() {
+        memset(arr, -1, sizeof(arr));
+    }
+    
+    void put(int key, int value) {
+        arr[key] = value;
+    }
+    
+    int get(int key) {
+        return arr[key];
+    }
+    
+    void remove(int key) {
+        arr[key] = -1;
     }
 };
 
