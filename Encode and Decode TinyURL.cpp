@@ -8,16 +8,43 @@ Design the encode and decode methods for the TinyURL service. There is no restri
 */
 
 class Solution {
+    unordered_map<string, string> encodeump;
+    unordered_map<string, string> decodeump;
 public:
+    
+    Solution(){
+        decodeump[""] = "";
+    }
+    
+    string getAlphabet(){
+        string ans;
+        int num = (rand() % (122 - 97 + 1)) + 97;
+        ans = char(num);
+        return ans;
+    }
+    
+    string getCode(){
+        string code = "";
+        code += to_string(rand() % 10) + getAlphabet() + to_string(rand() % 10) + getAlphabet() + to_string(rand() % 10) + getAlphabet();
+        return code;
+    }
 
     // Encodes a URL to a shortened URL.
     string encode(string longUrl) {
-        return longUrl;
+        if(encodeump.find(longUrl) != encodeump.end())
+            return encodeump[longUrl];
+        string code = "";
+        while(decodeump.find(code) != decodeump.end())
+            code = getCode();
+        string encodString = "http://tinyurl.com/" + code;
+        encodeump[longUrl] = encodString;
+        decodeump[encodString] = longUrl;
+        return encodString;
     }
 
     // Decodes a shortened URL to its original URL.
     string decode(string shortUrl) {
-        return shortUrl;
+        return decodeump[shortUrl];
     }
 };
 
