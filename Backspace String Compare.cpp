@@ -29,6 +29,8 @@ s and t only contain lowercase letters and '#' characters.
  
 Follow up: Can you solve it in O(n) time and O(1) space?
 */
+
+// Solution I
 class Solution {
 public:
     bool backspaceCompare(string s, string t) {
@@ -57,5 +59,29 @@ public:
             }
         }
         return s == t;
+    }
+};
+
+// Solution II
+class Solution {
+public:
+    bool backspaceCompare(string s, string t) {
+        return helper(s) == helper(t);
+    }
+    string helper(const string str){
+        stack<char> stk;
+        for(auto c : str){
+            if(c == '#' && !stk.empty())
+                stk.pop();
+            else
+                if(c != '#')
+                    stk.push(c);
+        }
+        string res = "";
+        while(!stk.empty()){
+            res += stk.top();
+            stk.pop();
+        }
+        return res;
     }
 };
