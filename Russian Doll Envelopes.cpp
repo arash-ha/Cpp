@@ -24,6 +24,7 @@ envelopes[i].length == 2
 1 <= wi, hi <= 10^4
 */
 
+// Solution I
 class Solution {
 public:
     int maxEnvelopes(vector<vector<int>>& envelopes) {
@@ -36,5 +37,27 @@ public:
                 if(envelopes[j][0] < envelopes[i][0] && envelopes[j][1] < envelopes[i][1])
                     dp[i] = max(dp[i], dp[j] + 1);
         return *max_element(dp.begin(), dp.end());
+    }
+};
+
+// Solution II
+
+class Solution {
+public:
+    int maxEnvelopes(vector<vector<int>>& envelopes) {
+        int n = envelopes.size();
+        sort(envelopes.begin(), envelopes.end(), cmp);
+        vector<int> list;
+        for(int i = 0; i < n; i++){
+            int ele = envelopes[i][1];
+            int idx = lower_bound(list.begin(), list.end(), ele) - list.begin();
+            if(idx >= list.size()) list.push_back(ele);
+            else list[idx] = ele;
+        }
+        return list.size();
+    }
+    static bool cmp(vector<int>& a, vector<int>& b){
+        if(a[0] == b[0]) return a[1] > b[1];
+        return a[0] < b[0];
     }
 };
