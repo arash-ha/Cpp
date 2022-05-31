@@ -43,6 +43,8 @@ s consists of 0's and 1's only.
 class Solution {
 public:
     bool hasAllCodes(string s, int k) {
+        if(s.size() < k)
+            return false;
         unordered_set<string> st;
         int n = s.length();
         string cur = "";
