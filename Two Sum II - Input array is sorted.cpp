@@ -34,6 +34,7 @@ nums is sorted in increasing order.
 -1000 <= target <= 1000
 */
 
+// Solution I
 class Solution {
 public:
     vector<int> twoSum(vector<int>& numbers, int target) {
@@ -47,5 +48,23 @@ public:
                 l++;
         }
         return {};
+    }
+};
+
+// Solution II
+class Solution {
+public:
+    vector<int> twoSum(vector<int>& numbers, int target) {
+        unordered_map<int, int> ump;
+        vector<int> res = {0, 0};
+        for(int i = 0; i < numbers.size(); i++){
+            int temp = target - numbers[i];
+            if(ump.find(temp)!= ump.end()){
+                res = {ump[temp] + 1, i + 1};
+                break;
+            }
+            ump[numbers[i]] = i;
+        }
+        return res;
     }
 };
