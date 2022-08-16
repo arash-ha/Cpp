@@ -57,3 +57,20 @@ public:
 		return true;
 	}
 };
+
+// Solution III
+class Solution {
+public:
+    int firstUniqChar(string s) {
+        vector<int> freq(26, 0);
+        for(auto i : s)
+            freq[i - 'a']++;
+        
+        for(auto i : s)
+            if(freq[i - 'a'] == 1){
+                int c = s.find(i);
+                return c;
+            }
+        return -1;
+    }
+};
