@@ -18,7 +18,7 @@ Constraints:
 -2^31 <= n <= 2^31 - 1
 */
 
-
+// Solution I
 class Solution {
 public:
     bool isPowerOfFour(int num) {
@@ -26,5 +26,20 @@ public:
         if(num == 1) return true;
         if(num % 4 == 0) return isPowerOfFour(num/4);
         return false;
+    }
+};
+
+// Solution II
+class Solution {
+public:
+    bool isPowerOfFour(int n) {
+        if(n < 1)
+            return false;
+        while(n > 1){
+            if (n % 4 != 0) 
+                return false;
+            n /= 4;
+        }
+        return true;
     }
 };
