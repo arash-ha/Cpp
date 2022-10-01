@@ -20,7 +20,7 @@ Explanation: The first Bob is the tallest, followed by Alice and the second Bob.
 Constraints:
 
 n == names.length == heights.length
-1 <= n <= 103
+1 <= n <= 10^3
 1 <= names[i].length <= 20
 1 <= heights[i] <= 10^5
 names[i] consists of lower and upper case English letters.
