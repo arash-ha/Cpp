@@ -23,6 +23,8 @@ Notes:
 1 <= A.length = A[0].length = B.length = B[0].length <= 30
 0 <= A[i][j], B[i][j] <= 1
 */
+
+// Solution I
 class Solution {
 public:
     int largestOverlap(vector<vector<int>>& A, vector<vector<int>>& B) {
@@ -42,5 +44,30 @@ public:
             }
         }
         return count;
+    }
+};
+
+// Solution II
+class Solution {
+public:
+    int largestOverlap(vector<vector<int>>& img1, vector<vector<int>>& img2) {
+        int n = img1.size(), res = 0;
+        for(int r = -(n - 1); r <= n - 1; r++){
+            for(int c = -(n - 1); c <= n - 1; c++){
+                int cur = 0;
+                for(int i = 0; i < n; i++){
+                    for(int j = 0; j < n; j++){
+                        int tmp = 0;
+                        if(i - r >= 0 && i - r < n && j - c >= 0 && j - c < n)
+                            tmp = img1[i - r][j - c];
+                        if(tmp == 1 && img2[i][j] == 1) {
+                            cur++;
+                        }
+                    }
+                }
+                res = max(res, cur);
+            }
+        }
+        return res;
     }
 };
